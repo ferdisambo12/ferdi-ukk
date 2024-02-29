@@ -2,11 +2,12 @@
   <div class="card-header">
       <form class="form-horizontal form-label-left" novalidate  action="<?= base_url('home/aksi_tambah_foto')?>" method="post">      
         <h1></h1>
-         <div class="item form-group">
-        <label class="control-label col-12">Replace Menu Image<span style="color: red;">*</span></label>
-        <div class="col-12">
-          <input type="file" name="foto" class="form-file-input form-control col-12">
-        </div>
+         <div class="form-container">
+    <form action="/post/aksi_tambah/" method="post" enctype="multipart/form-data">
+      <label for="photo">Foto</label>
+      <div class="position-relative">
+        <input type="file" class="form-control" placeholder="Foto" name="foto" id="foto" onchange="previewImage()" accept="image/*" required>
+        <img id="preview" src="" alt="" style="max-width: 100px; margin-top: 10px;">
       </div>
       <h1></h1>
       <div class="item form-group">

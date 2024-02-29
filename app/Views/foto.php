@@ -28,7 +28,7 @@
                 <tr>
                   <th><?php echo $no++ ?></th>
                   <td>
-                     <a href="<?= base_url('foto/foto_mobil/' . $gas->id_foto) ?>">
+                     <a href="<?= base_url('foto/data/' . $gas->id_foto) ?>">
                        <img src="<?= base_url('foto/' . $gas->foto) ?>" class="img-fluid" style="object-fit: cover; width: 95px; height: 140px;" alt="Foto">
                     </a>
                  </td>

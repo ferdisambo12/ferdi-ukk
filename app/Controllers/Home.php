@@ -294,36 +294,39 @@ public function aksi_edit_pengguna()
     //     return redirect()->to('/home/dashboard');
     // }
     }
-    public function aksi_tambah_foto()
+   public function aksi_tambah_foto()
 {
-    $model=new M_model();
-    $judul=$this->request->getPost('judul');
-    $deskripsi=$this->request->getPost('deskripsi');
-    $tanggal=$this->request->getPost('tanggal');
-    $lokasi=$this->request->getPost('lokasi');
-    $id_album=$this->request->getPost('id_album');
-    $data=array(
-        'judul'=>$judul,
-        'deskripsi'=>$deskripsi,
-        'tanggal'=>$tanggal,
-        'lokasi'=>$lokasi,
-        'id_album'=>$id_album,
+    $model = new M_model();
+    $judul = $this->request->getPost('judul');
+    $deskripsi = $this->request->getPost('deskripsi');
+    $tanggal = $this->request->getPost('tanggal');
+    $lokasi = $this->request->getPost('lokasi');
+    $id_album = $this->request->getPost('id_album');
+    $data = array(
+        'judul' => $judul,
+        'deskripsi' => $deskripsi,
+        'tanggal' => $tanggal,
+        'lokasi' => $lokasi,
+        'id_album' => $id_album,
     );
 
     try {
         $foto = $this->request->getFile('foto');
         if ($foto && $foto->isValid() && !$foto->hasMoved()) {
-            $newName = $foto->getRandomName();
-            $foto->move(ROOTPATH . '/public/assets/img/foto/', $newName);
-            $data['foto'] = $newName; // Add the uploaded file name to the data
+            $imageName = $foto->getRandomName();
+            $foto->move('Downloads/', $imageName);
+        } else {
+            $imageName = 'default.png';
         }
 
-        $model->simpan('foto',$data);
+        $data['foto'] = $imageName; // Simpan nama file foto dalam array data
+        $model->simpan('foto', $data);
         return redirect()->to('/home/foto');
     } catch (\Exception $e) {
         echo 'Error: ' . $e->getMessage();
     }
 }
+
     public function edit_foto($id)
 {
     $model = new M_model();
